@@ -9,9 +9,15 @@ export const Tasks = new Mongo.Collection('tasks')
 // 10.2  Add publication for tasks
 if (Meteor.isServer) {
   // This code only runs on the server
+  // Only publish tasks that are public or belong to the current user
   Meteor.publish('tasks', function tasksPublication() {
-    return Tasks.find();
-  });
+    return Tasks.find({
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ],
+    })
+  })
 }
 
 // 9.2  Define some methods
