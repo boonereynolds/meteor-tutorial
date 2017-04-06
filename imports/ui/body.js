@@ -6,11 +6,12 @@ import './body.html'
 
 Template.body.helpers({
   tasks() {
-    return Tasks.find({})
+    // 4.3 Show newest tasks at the top
+    return Tasks.find({}, { sort: { createdAt: -1 } })
   }
 })
 
-// 4.2
+// 4.2 Add event handler for form submit
 Template.body.events({
   'submit .new-task'(event) {
     // Prevent default browser form submit
