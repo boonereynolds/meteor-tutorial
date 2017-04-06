@@ -43,14 +43,9 @@ Template.body.events({
     const target = event.target
     const text = target.text.value
 
+    // 9.3  Replace insert with addTask method
     // Insert a task into the collection
-    Tasks.insert({
-      text,
-      createdAt: new Date(), // current time
-      // 8.5  Update insert to include user data
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    })
+   Meteor.call('tasks.insert', text)
 
     // Clear form
     target.text.value = ''

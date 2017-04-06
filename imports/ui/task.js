@@ -1,3 +1,5 @@
+// 9.4  Replace update and remove with methods
+import { Meteor } from 'meteor/meteor'
 // 5.3  Add event handlers for Task buttons
 import { Template } from 'meteor/templating';
 
@@ -7,12 +9,12 @@ import './task.html';
 
 Template.task.events({
   'click .toggle-checked'() {
+    // 9.4  Replace update and remove with methods
     // Set the checked property to the opposite of its current value
-    Tasks.update(this._id, {
-      $set: { checked: ! this.checked },
-    });
+    Meteor.call('tasks.setChecked', this._id, !this.checked)
   },
   'click .delete'() {
-    Tasks.remove(this._id);
+    // 9.4  Replace update and remove with methods
+    Meteor.call('tasks.remove', this._id)
   },
 });
