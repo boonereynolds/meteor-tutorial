@@ -6,6 +6,14 @@ import { check } from 'meteor/check'
 
 export const Tasks = new Mongo.Collection('tasks')
 
+// 10.2  Add publication for tasks
+if (Meteor.isServer) {
+  // This code only runs on the server
+  Meteor.publish('tasks', function tasksPublication() {
+    return Tasks.find();
+  });
+}
+
 // 9.2  Define some methods
 Meteor.methods({
   'tasks.insert'(text) {

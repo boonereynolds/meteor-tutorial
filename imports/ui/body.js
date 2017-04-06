@@ -11,7 +11,9 @@ import './body.html'
 
 // 7.3  Add state dictionary to the body
 Template.body.onCreated(function bodyOnCreated() {
-  this.state = new ReactiveDict();
+  this.state = new ReactiveDict()
+  // 10.3  Subscribe to tasks
+  Meteor.subscribe('tasks')
 })
 
 Template.body.helpers({
