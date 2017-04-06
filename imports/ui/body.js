@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating'
 
 import { Tasks } from '../api/tasks.js'
 
+// 5.4  Import Task component from the body
+import './task.js'
 import './body.html'
 
 Template.body.helpers({
