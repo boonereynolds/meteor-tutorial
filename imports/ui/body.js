@@ -25,7 +25,11 @@ Template.body.helpers({
     // Otherwise, return all of the tasks
     // 4.3 Show newest tasks at the top
     return Tasks.find({}, { sort: { createdAt: -1 } })
-  }
+  },
+  // 7.6  Add incompleteCount helper to body
+  incompleteCount() {
+    return Tasks.find({ checked: { $ne: true } }).count();
+  },
 })
 
 // 4.2 Add event handler for form submit
