@@ -13,10 +13,17 @@
       <!-- 8.2  Include loginButtons -->
       {{> loginButtons}}
 
+      <!-- 8.6  Only show add task form if logged in -->
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="Type to add new tasks" />
+        </form>
+      {{/if}}
+
       <!-- 4.1 Add form for new tasks -->
-      <form class="new-task">
+      <!-- <form class="new-task">
         <input type="text" name="text" placeholder="Type to add new tasks" />
-      </form>
+      </form>-->
     </header>
 
     <ul>

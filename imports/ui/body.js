@@ -1,8 +1,8 @@
+// 8.5  Update insert to include user data
+import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
-
 // 7.3  Add state dictionary to the body
 import { ReactiveDict } from 'meteor/reactive-dict'
-
 import { Tasks } from '../api/tasks.js'
 
 // 5.4  Import Task component from the body
@@ -47,6 +47,9 @@ Template.body.events({
     Tasks.insert({
       text,
       createdAt: new Date(), // current time
+      // 8.5  Update insert to include user data
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
     })
 
     // Clear form
